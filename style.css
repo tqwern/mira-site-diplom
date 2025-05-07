@@ -1,0 +1,398 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-bg-color: #d6d6d6;
+    --primary-color: #837a70;
+    --secondary-color: #e4ded9;
+    --text-color: #332626;
+    --accent-color: #d9534f;
+    --accent-hover: #c9302c;
+    --footer-bg: #333;
+}
+
+/* Sticky Footer: только flex! */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    min-height: 100vh;
+    text-align: center;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: var(--main-bg-color);
+    overflow-x: hidden; /* чтобы не было горизонтального скролла */
+}
+
+/* === Карта на всю ширину === */
+.map-section-full {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 30px 0 10px 0;
+    box-sizing: border-box;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+.map-section-full iframe {
+    width: 100vw;
+    min-width: 320px;
+    height: 400px;
+    display: block;
+    border: none;
+}
+@media (max-width: 768px) {
+    .map-section-full iframe {
+        height: 220px;
+    }
+}
+
+/* === Приветствие === */
+.welcome {
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+.welcome h1 {
+    margin-bottom: 10px;
+}
+
+/* === Основной контент === */
+main {
+    flex: 1 0 auto;
+    margin-bottom: 10px;
+}
+
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    background: var(--footer-bg);
+    padding: 20px 0;
+    text-align: center;
+    color: #fff;
+}
+
+/* === Заголовки === */
+h1,
+h2 {
+    color: var(--text-color);
+    text-shadow: 2px 2px 6px rgba(131, 115, 115, 0.61);
+}
+
+/* === Ссылки === */
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover,
+a:focus {
+    color: #691b1b;
+}
+
+/* === Хедер и навигация === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    text-shadow: 4px 3px 8px rgba(0, 0, 0, 0.9);
+    font-weight: 600;
+    padding: 10px 20px;
+}
+.logo {
+    margin-left: 30px;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+nav a {
+    margin: 0 15px;
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+
+/* === Контейнеры и карточки === */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.card {
+    position: relative;
+    width: calc(33% - 20px);
+    height: 250px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+.card-text {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: opacity 0.3s;
+}
+.card:hover .card-image img,
+.card:focus .card-image img {
+    filter: none;
+}
+.card:hover .card-text,
+.card:focus .card-text {
+    opacity: 0;
+}
+
+/* === Комнаты === */
+.room {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.room:hover,
+.room:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.room img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* === Кнопки === */
+.btn,
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+.btn:hover,
+.btn:focus,
+button:hover,
+button:focus {
+    background: #555;
+    transform: translateY(-2px);
+}
+.btn:active,
+button:active {
+    transform: translateY(2px);
+}
+
+/* === Сообщения, формы, отзывы === */
+.letter {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.letter p {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.letter p:last-child {
+    font-weight: bold;
+    margin-top: 20px;
+}
+form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+input,
+textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #fff;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+input:focus,
+textarea:focus {
+    border: 1px solid var(--accent-color);
+}
+textarea {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+}
+#response-message {
+    color: #28a745;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+    padding: 10px;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 5px;
+}
+
+/* === Отзывы === */
+.review-container {
+    position: relative;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: #333;
+    min-height: 120px;
+}
+.review {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.review.active {
+    opacity: 1;
+}
+
+/* === Футер (дополнительно) === */
+.footer-bottom img {
+    vertical-align: middle;
+}
+
+/* === Hero Section === */
+.hero-section {
+    width: 100%;
+    background: url('hotel.jpg') center/cover no-repeat fixed;
+    text-align: center;
+    padding: 100px 20px;
+    box-sizing: border-box;
+}
+.textm {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* === Адаптивность === */
+@media (max-width: 1024px) {
+    .card {
+        width: 48%;
+    }
+}
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .logo {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    nav {
+        margin: 10px 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav a {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 90%;
+        height: auto;
+        margin-bottom: 20px;
+        cursor: default;
+        pointer-events: none;
+    }
+    .card-image img {
+        filter: none;
+    }
+    .card-text {
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        transform: none;
+        width: 100%;
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 0 0 10px 10px;
+        font-size: 16px;
+    }
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+    iframe,
+    .map-container iframe {
+        height: 300px;
+    }
+    .hero-section {
+        padding: 60px 15px;
+        background-attachment: scroll;
+    }
+}
+
+/* === Анимации === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

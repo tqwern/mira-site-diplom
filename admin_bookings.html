@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Заявки на бронирование{% endblock %}
+{% block content %}
+<h2>Заявки на бронирование</h2>
+{% if bookings and bookings|length > 0 %}
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Номер</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Заезд</th>
+        <th>Выезд</th>
+        <th>Комментарий</th>
+        <th>Обработано</th>
+        <th>Отменено</th>
+    </tr>
+    {% for b in bookings %}
+    <tr>
+        <td>{{ b[0] }}</td>
+        <td>{{ b[1] }}</td>
+        <td>{{ b[2] }}</td>
+        <td>{{ b[3] }}</td>
+        <td>{{ b[4] }}</td>
+        <td>{{ b[5] }}</td>
+        <td>{{ b[6] }}</td>
+        <td>{{ b[7] }}</td>
+        <td>
+            {% if b[8] %}
+                Да
+            {% else %}
+                <form method="post" action="{{ url_for('mark_processed', booking_id=b[0]) }}" style="display:inline;">
+                    <button type="submit">Отметить как обработано</button>
+                </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if b[9] %}
+                Да
+            {% else %}
+                <form method="post" action="{{ url_for('cancel_booking', booking_id=b[0]) }}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Вы уверены, что хотите отменить бронь?')">Отменить бронь</button>
+                </form>
+            {% endif %}
+        </td>        
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Нет заявок.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="welcome">
+    <h1>Добро пожаловать в гостиницу "Мира"!</h1>
+    <p>
+        Мы рады приветствовать вас на нашем сайте. Гостиница "Мира" - это современные номера, отличный сервис и уютная
+        атмосфера в самом центре Нефтеюганска.<br>
+        Забронируйте номер онлайн или свяжитесь с нами по телефону. Мы сделаем всё, чтобы ваш отдых был максимально
+        комфортным!
+    </p>
+</section>
+
+<script src="{{ url_for('static', filename='reviews.js') }}"></script>
+
+<section class="card-container">
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='modern-rooms.jpg') }}" alt="Современные номера">
+        </div>
+        <div class="card-text">Современные номера</div>
+    </div>
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='excellent-service.jpg') }}" alt="Отличный сервис">
+        </div>
+        <div class="card-text">Отличный сервис</div>
+    </div>
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='fast-check-in.jpg') }}" alt="Быстрое заселение">
+        </div>
+        <div class="card-text">Быстрое заселение</div>
+    </div>
+</section>
+
+<h2>Почему к нам возвращаются снова и снова?</h2>
+<section class="review-container" aria-live="polite">
+    <div class="review active">
+        <p id="review-text">"Гостиница очень понравилась. Приветливый персонал и хозяин гостиницы. Отличная сауна и
+            бассейн. Только положительные эмоции."</p>
+        <h4 id="review-author">- Александр Сеничкин</h4>
+    </div>
+</section>
+
+<section class="hero-section">
+    <p class="textm">Мы будем рады, если вы оставите отзыв о нашем сервисе!<br>Ваши предложения и отзывы помогут нам
+        стать лучше.</p>
+    <form id="contact-form" action="{{ url_for('review') }}" method="POST">
+        <label>Ваше имя:
+            <input type="text" name="name" required>
+        </label>
+        <label>Ваш email:
+            <input type="email" name="email" required>
+        </label>
+        <label>Ваше сообщение:
+            <textarea name="message" required></textarea>
+        </label>
+        <button type="submit">Отправить</button>
+    </form>
+</section>
+
+<section class="map-section-full">
+    <h2 style="text-align:center;margin-bottom:20px;">Как нас найти</h2>
+    <iframe
+        src="https://yandex.ru/map-widget/v1/?display-text=%D0%B3%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B8%D1%86%D0%B0%20%D0%BD%D0%B5%D1%84%D1%82%D0%B5%D1%8E%D0%B3%D0%B0%D0%BD%D1%81%D0%BA&ll=72.633702%2C61.092365&mode=search&oid=154121624470&ol=biz&sll=72.604653%2C61.097669&sspn=0.007510%2C0.002142&text=%D0%B3%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B8%D1%86%D0%B0%20%D0%BD%D0%B5%D1%84%D1%82%D0%B5%D1%8E%D0%B3%D0%B0%D0%BD%D1%81%D0%BA&utm_source=share&z=13.44"
+        width="100%" height="400" frameborder="0" allowfullscreen="true" style="display:block;border:0;">
+    </iframe>
+    <p style="text-align:center;margin-top:10px;">г. Нефтеюганск, ул. Мира, д. 8А</p>
+</section>
+
+
+{% endblock %}

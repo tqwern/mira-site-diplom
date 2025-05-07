@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Отзывы{% endblock %}
+{% block content %}
+<h2>Отзывы гостей</h2>
+{% if reviews and reviews|length > 0 %}
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Сообщение</th>
+        <th>Дата</th>
+        <th>Обработан</th>
+        <th>Действия</th>
+    </tr>
+    {% for r in reviews %}
+    <tr>
+        <td>{{ r[0] }}</td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>{{ r[3] }}</td>
+        <td>{{ r[4] }}</td>
+        <td>
+            {% if r[5] %}
+                Да
+                <form method="post" action="{{ url_for('unprocess_review', review_id=r[0]) }}" style="display:inline;">
+                    <button type="submit">Сделать необработанным</button>
+                </form>
+            {% else %}
+                Нет
+                <form method="post" action="{{ url_for('process_review', review_id=r[0]) }}" style="display:inline;">
+                    <button type="submit">Отметить как обработано</button>
+                </form>
+            {% endif %}
+        </td>
+        <td>
+            <form method="post" action="{{ url_for('delete_review', review_id=r[0]) }}" style="display:inline;">
+                <button type="submit" onclick="return confirm('Удалить отзыв?')">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Пока нет отзывов.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Бронирование номера</h2>
+
+{% if error %}
+    <div class="error" style="color:red;">{{ error }}</div>
+{% endif %}
+{% if message %}
+    <div class="success" style="color:green;">{{ message }}</div>
+{% endif %}
+
+<form method="post">
+    <input type="hidden" name="room_id" value="{{ room_id }}">
+    <label>Тип номера:</label>
+    <input value="{{ room_name or '' }}" readonly>
+    <input name="name" placeholder="Ваше имя" required>
+    <input name="phone" placeholder="Телефон" required>
+    <input name="email" type="email" placeholder="Email">
+    <input name="checkin" type="date" placeholder="Дата заезда" required>
+    <input name="checkout" type="date" placeholder="Дата выезда" required>
+    <textarea name="comment" placeholder="Пожелания"></textarea>
+    <button type="submit" class="btn">Отправить заявку</button>
+</form>
+{% endblock %}
